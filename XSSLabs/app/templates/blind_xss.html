@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block title %}Blind XSS{% endblock %}
+{% block content %}
+    <h1>Blind XSS Challenge</h1>
+    <form method="post">
+        <input type="text" name="payload" placeholder="Enter your payload...">
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Blind XSS Log</h2>
+    <ul>
+        {% for entry in logs %}
+            <li>{{ entry.payload }} ({{ entry.timestamp }}) {% if entry.visited %}<b>[Visited]</b>{% endif %}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+{% endblock %} 

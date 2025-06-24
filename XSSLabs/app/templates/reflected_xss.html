@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block title %}Reflected XSS{% endblock %}
+{% block content %}
+    <h1>Reflected XSS Challenge</h1>
+    <form method="post">
+        <input type="text" name="query" value="{{ query }}" placeholder="Enter search...">
+        <button type="submit">Search</button>
+    </form>
+    {% if result is not none %}
+        <h2>Result:</h2>
+        <div>{{ result|safe }}</div>
+    {% endif %}
+    <a href="/">Back to Home</a>
+{% endblock %} 

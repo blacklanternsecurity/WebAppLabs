@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% block title %}When Tools Fail 2{% endblock %}
+{% block content %}
+    <h1>When Tools Fail 2: Steal the Admin Cookie</h1>
+    <form method="post">
+        <input type="text" name="payload" placeholder="Enter your JavaScript payload...">
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Submitted Payloads</h2>
+    <ul>
+        {% for entry in logs %}
+            <li>Payload: <code>{{ entry.payload }}</code> ({{ entry.timestamp }}) {% if entry.visited %}<b>[Visited]</b>{% endif %}</li>
+        {% endfor %}
+    </ul>
+    <h2>Cookie Theft Log</h2>
+    <ul>
+        {% for entry in cookies %}
+            <li>Stolen Cookie: <code>{{ entry.cookie }}</code> ({{ entry.timestamp }})</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+{% endblock %} 

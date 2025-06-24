@@ -1,0 +1,17 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    # volumes:
+    #   - ./app:/app
+    restart: unless-stopped
+  bot:
+    build:
+      context: .
+      dockerfile: bot.Dockerfile
+    depends_on:
+      - web
+    restart: unless-stopped

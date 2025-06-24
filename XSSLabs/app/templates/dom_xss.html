@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}DOM XSS Lab{% endblock %}
+{% block content %}
+<h1>DOM XSS Challenge</h1>
+<p><b>The Scenario:</b><br>
+    Enter a search term and submit. The page will update the URL hash (the part after <code>#</code>), and JavaScript will reflect it into the page using <code>innerHTML</code>.
+</p>
+<form id="searchForm" onsubmit="updateHash(); return false;">
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>
+<div id="result" style="margin-top:1em;"></div>
+<script>
+function updateHash() {
+    var val = document.getElementById('searchInput').value;
+    location.hash = 'search=' + encodeURIComponent(val);
+}
+window.onload = function() {
+    if (location.hash.startsWith('#search=')) {
+        // Vulnerable: writes unsanitized user input to the DOM
+        document.getElementById('result').innerHTML = decodeURIComponent(location.hash.substring(8));
+    }
+}
+</script>
+{% endblock %} 
