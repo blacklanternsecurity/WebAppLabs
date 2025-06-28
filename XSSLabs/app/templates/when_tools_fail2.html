@@ -12,11 +12,5 @@
             <li>Payload: <code>{{ entry.payload }}</code> ({{ entry.timestamp }}) {% if entry.visited %}<b>[Visited]</b>{% endif %}</li>
         {% endfor %}
     </ul>
-    <h2>Cookie Theft Log</h2>
-    <ul>
-        {% for entry in cookies %}
-            <li>Stolen Cookie: <code>{{ entry.cookie }}</code> ({{ entry.timestamp }})</li>
-        {% endfor %}
-    </ul>
     <a href="/">Back to Home</a>
 {% endblock %} 

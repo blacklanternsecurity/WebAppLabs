@@ -118,7 +118,7 @@ $results = $result['results'];
     </table>
     <?php endif; ?>
     <?php if ($query): ?><div class="sql"><b>SQL Query:</b><br><?php echo htmlspecialchars($query); ?></div><?php endif; ?>
-    <div class="nav"><a href="index.php">Back to Login</a></div>
+    <div class="nav"><a href="index.php">Back to Challenges</a></div>
   </div>
   <div class="footer">&copy; Black Lantern Security 2025</div>
 </body>

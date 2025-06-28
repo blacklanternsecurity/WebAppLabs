@@ -133,14 +133,6 @@ def api_mark_advanced_visited(payload_id):
         return {'status': 'ok'}
     return {'status': 'not found'}, 404
 
-@app.route('/exfiltrate', methods=['GET'])
-def exfiltrate():
-    cookie = request.args.get('cookie', '')
-    if cookie:
-        db.session.add(CookieTheftLog(cookie=cookie))
-        db.session.commit()
-    return '', 204
-
 @app.route('/admin')
 def admin_panel():
     admin_cookie = request.cookies.get('admin_session')
@@ -162,7 +154,7 @@ def filter_3(payload):
 @app.route('/when_tools_fail2', methods=['GET', 'POST'])
 def when_tools_fail2():
     if 'admin' in request.args:
-        resp = make_response(render_template('when_tools_fail2.html', logs=[], cookies=[]))
+        resp = make_response(render_template('when_tools_fail2.html', logs=[]))
         resp.set_cookie('admin_session', 'TrevorSpray')
         return resp
     if request.method == 'POST':
@@ -174,8 +166,7 @@ def when_tools_fail2():
             db.session.add(AdvancedPayload2(payload=filtered))
             db.session.commit()
     logs = AdvancedPayload2.query.order_by(AdvancedPayload2.timestamp.desc()).all()
-    cookies = CookieTheftLog.query.order_by(CookieTheftLog.timestamp.desc()).all()
-    return render_template('when_tools_fail2.html', logs=logs, cookies=cookies)
+    return render_template('when_tools_fail2.html', logs=logs)
 
 @app.route('/api/advanced_payloads2', methods=['GET'])
 def api_advanced_payloads2():
