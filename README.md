@@ -3,8 +3,10 @@ These labs were created with the intention of providing beginners with a local e
 
 ## General Information:
 All Labs are spun up using Docker. All labs have separate Docker files to prevent confusion and clutter in a single application. 
+
+```sudo docker compose up --build```
 ### SQLi
-For the exercise, the test users are:
+For this exercise, the test users are:
 admin
 user1
 test
